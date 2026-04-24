@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Statistics</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, sans-serif;
+           background: linear-gradient(135deg, #1e3a8a, #9333ea, #fbcfe8);
+            margin: 0;
+            background-repeat: no-repeat;   
+            background-attachment: fixed;   
+            background-size: cover;         
+            height: 100vh;  
+            padding: 20px;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            color: #f8f8f8;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background: #fff;
+            margin: 15px auto;
+            padding: 15px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            width: 70%;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transition: transform 0.2s;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .icon {
+            font-size: 20px;
+            color: #1e3a8a;
+        }
+
+        .stat-text {
+            font-size: 15px;
+            font-weight: bold;
+            color: #444;
+        }
+
+        a {
+            display: inline-block;
+            margin-top: 25px;
+            text-decoration: none;
+            color: white;
+            background: #1e3a8a;
+            padding: 10px 20px;
+            border-radius: 6px;
+            transition: 0.3s;
+        }
+
+        a:hover {
+            background: #3b82f6;
+        }
+    </style>
+</head>
+<body>
+
+<h1>📊 Statistics</h1>
+
+
+<div class="stat-card">
+    <span class="icon">📌</span>
+    <div class="stat-text">Total Trips : {{ stats["Total Trips"] }}</div>
+</div>
+
+
+<h2 style="text-align:center; color:#ffffff;">🚆 Trips per Train Type</h2>
+{% for t, count in stats["Trips per Train Type"].items() %}
+    <div class="stat-card">
+        <span class="icon">🚆</span>
+        <div class="stat-text">{{ t }} : {{ count }} trips</div>
+    </div>
+{% endfor %}
+
+<div style="text-align:center;">
+    <a href="/">⬅ Back</a>
+</div>
+
+</body>
+</html>
+

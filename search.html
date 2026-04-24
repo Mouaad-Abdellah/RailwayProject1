@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Search Results</title>
+    <style>
+    body {
+        font-family: 'Segoe UI', Tahoma, sans-serif;
+        background: linear-gradient(135deg, #1e3a8a, #9333ea, #fbcfe8);
+        background-attachment: fixed;
+        margin: 0;
+        padding: 20px;
+        color: #111827;
+    }
+
+    h1 {
+        text-align: center;
+        color: #ffffff;
+        margin-bottom: 30px;
+        font-size: 28px;
+        text-shadow: 0 2px 6px rgba(0,0,0,0.3);
+    }
+
+    .card {
+        background: rgba(255,255,255,0.9);
+        margin: 20px auto;
+        padding: 25px;
+        border-radius: 16px;
+        box-shadow: 0 6px 16px rgba(0,0,0,0.2);
+        width: 80%;
+        transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 10px 24px rgba(0,0,0,0.3);
+    }
+
+    .info {
+        margin: 12px 0;
+        font-size: 16px;
+    }
+
+    .info b {
+        color: #2563eb;
+    }
+
+    .classes {
+        margin-top: 20px;
+        padding: 12px;
+        background: linear-gradient(135deg, #3b82f6, #9333ea);
+        border-radius: 10px;
+        color: #fff;
+    }
+
+    .class-item {
+        padding: 8px 0;
+        border-bottom: 1px solid rgba(255,255,255,0.3);
+        font-size: 15px;
+    }
+
+    .class-item:last-child {
+        border-bottom: none;
+    }
+
+    .days {
+        margin-top: 20px;
+        font-size: 15px;
+        background: rgba(37,99,235,0.1);
+        padding: 10px;
+        border-radius: 8px;
+        text-align: center;
+        font-weight: bold;
+        color: #1e3a8a;
+    }
+
+    a {
+        display: inline-block;
+        margin-top: 25px;
+        text-decoration: none;
+        color: #fff;
+        background: linear-gradient(135deg, #2563eb, #9333ea);
+        padding: 12px 24px;
+        border-radius: 8px;
+        transition: 0.3s;
+        font-weight: bold;
+    }
+
+    a:hover {
+        background: linear-gradient(135deg, #1e40af, #7e22ce);
+    }
+
+    .not-found {
+        text-align: center;
+        font-size: 18px;
+        color: #ef4444;
+        font-weight: bold;
+    }
+    </style>
+</head>
+<body>
+
+<h1>🔍 Search Results</h1>
+
+{% if trip %}
+    <div class="card">
+        <div class="info"><b>Code:</b> {{ trip.code }}</div>
+        <div class="info"><b>Type:</b> {{ trip.type }}</div>
+        <div class="info"><b>Departure:</b> {{ trip.departure_time }}</div>
+        <div class="info"><b>Arrival:</b> {{ trip.arrival_time }}</div>
+
+        <h3>Classes:</h3>
+        <div class="classes">
+            {% for c in trip.classes %}
+                <div class="class-item">{{ c.type }} : {{ c.price }} DA</div>
+            {% endfor %}
+        </div>
+
+        <div class="days">Operating Days: {{ trip.days }}</div>
+    </div>
+{% else %}
+    <p class="not-found">🚫 Trip Not Found</p>
+{% endif %}
+
+<div style="text-align:center;">
+    <a href="/">⬅ Back</a>
+</div>
+
+</body>
+</html>
+
